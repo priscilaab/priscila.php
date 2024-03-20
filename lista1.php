@@ -38,12 +38,19 @@ ATIVIDADE 1:
 // RESPOSTA:
 $lanches = ["X-Bacon", "X-Tudo", "X-Filé", "X-Salada"];
 
- 
-for($i = 0; $i <= 3; $i++){
-    echo $lanches[$i] . count($lanches) . "<br>" ;
+for($i = 0; $i < count($lanches); $i++){
+   echo $lanches[$i] . "<br>";
     }
 
- echo"<br><br>";
+    echo "<br>";
+    
+    foreach($lanches as $lanche){
+    echo $lanche . "<br>";
+    }
+
+    echo "<br>";
+    echo "Número de itens: " . count($lanches);
+    echo "<br><br>";
 // ===============================================================
 /*
 ATIVIDADE 2:
@@ -115,13 +122,11 @@ ATIVIDADE 4:
  ]
 ];
 
-foreach ()
-foreach($tabela as $k => $v){
-    echo "$k : ". $v["idProduto"]."<br>". 
-    "$k : ". $v["nomeProduto"]."<br>". 
-    "$k : ". $v["preco"]."<br>". 
-    "$k : ". $v["descricao"]."<br>". 
-    "$k : ". $v["estoque"]."<br>";
+foreach ($tabela as $linha){
+foreach($linha as $k => $v){
+    echo "$k : ". $v."<br>";
+}
+echo "============<br>";
 }
 
 /*

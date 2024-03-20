@@ -77,6 +77,7 @@ if ($altura >= 1.80){
 echo "<h2>Exercicios Supervisionados</h2>";
 echo "<br>";
 // &&=and ||=or
+//
 //Atividade 1:
 $idade = 36;
 

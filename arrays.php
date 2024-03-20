@@ -102,6 +102,7 @@ $dados = [
 
 echo $dados[0]["Pets"][1];
 echo "<br>=======================<br>";
+
 foreach($dados as $v){
     echo $v["ID"]."<br>". 
     strtoupper($v["Nome"])."<br>". 
@@ -127,7 +128,7 @@ echo "<br>";
 echo $pass; // *
 echo "<br><br>";
 
-$nomes = "Priscila Nunes";
-echo explode (" ", $nome)[0]."<br>";
-echo explode (" ", $nome)[1];
+//$nomes = "Priscila Nunes";
+//echo explode (" ", $nome)[0]."<br>";
+//echo explode (" ", $nome)[1];
 ?>
