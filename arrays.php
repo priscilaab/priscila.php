@@ -86,7 +86,7 @@ $dados = [
 ],
 [
     "ID"=>668,
-    "Nome"=>"Carlos Humiatá",
+    "Nome"=>"Carlos Humaitá",
     "Idade"=>51,
     "Salário"=>6400.16,
     "Função"=>"Operador de Guincho"
