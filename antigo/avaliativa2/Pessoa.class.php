@@ -30,7 +30,8 @@ class Pessoa{
         echo "------------------------<br>
         Nome: $this->nome<br>
         Idade: $this->idade<br>
-        Profissão: $this->profissao<br>";
+        Profissão: $this->profissao<br>
+        -------------------------------<br>";
     }
 
 }

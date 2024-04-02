@@ -24,7 +24,8 @@ class Veiculo{
         Modelo: $this->modelo<br>
         Ano: $this->ano<br>
         Cor: $this->cor<br>
-        Preço Zero: $this->preco_zero<br>";
+        Preço Zero: R$ $this->preco_zero<br>
+        -----------------------------<br>";
     }
     public function calcularIdade(){
         $idade = date('Y') - $this->ano;
@@ -32,16 +33,18 @@ class Veiculo{
     }
     public function calcularDepreciacao(){
         $depreciacao = ((date('Y')-$this->ano ) * 430) + 2100;
-        echo"Depreciação: $depreciacao<br>";
+        echo "Depreciação: R$ $depreciacao<br>";
     }
     public function ehNovo(){
-       if (date('Y')- $this->ano<2){
-            echo "É Novo!";
+       if (date('Y')- $this->ano<=2){
+            echo "É Novo!<br>";
+       }else{
+        echo "Já é Velho!<br>";
        }
     }
-    public function pintarVeiculo($novaCor)
-
-    
+    public function pintarVeiculo($novaCor){
+        $this->cor = $novaCor;
+    }
 }
 
 ?>
