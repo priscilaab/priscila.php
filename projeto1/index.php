@@ -6,6 +6,9 @@ $usuario = new Usuario();
 
 $usuario->Listar();
 
-print_r($usuario->Listar());
+//print_r($usuario->Listar());
+$tabela = $usuario->Listar();
+
+print_r($tabela);
 
 ?>
