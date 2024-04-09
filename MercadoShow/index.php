@@ -31,6 +31,7 @@ $produto->id_fornecedor=1;
 $produto->Cadastrar();*/
 
 
+
 $produto->id=17;
 $produto->Apagar();
 $tabela = $produto->Listar();

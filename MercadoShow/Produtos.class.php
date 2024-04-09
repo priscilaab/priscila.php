@@ -15,7 +15,7 @@
  
     // Métodos
     public function Listar() {
-      $sql = "SELECT * FROM produtos";
+      $sql = "SELECT * FROM view_produtos";
       $conexao = Banco::conectar();
       // Converter o comando sql (string) em um objeto
       $comando = $conexao->prepare($sql);
