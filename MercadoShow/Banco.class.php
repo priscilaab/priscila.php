@@ -2,7 +2,7 @@
  
 class Banco
 {
-    private static $dbNome = 'sistema';
+    private static $dbNome = 'mercadoshow';
     private static $dbHost = 'localhost';
     private static $dbUsuario = 'root';
     private static $dbSenha = '';

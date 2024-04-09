@@ -6,7 +6,7 @@ require_once('Banco.class.php');
 class Usuario{
     // Artibutos: 
     //  Que os atributos preferencialmente sejam iguais aos dos banco de dados
-    public $i;
+    public $id_usuario;
     public $nome_completo;
     public $email;
     public $senha;
@@ -38,12 +38,51 @@ class Usuario{
     public function Cadastrar(){
     $sql = "INSERT INTO usuarios('nome_completo', 'email', 'senha') VALUES
       (?,?,?)";
+        $conexao = Banco::conectar();
+        // Converter o comando sql (string) em um objeto
+        $comando = $conexao->prepare($sql);
+    
+    $hashsenha = hash('sha256', $this->senha);
+ 
+      // Executar o comando
+      $comando->execute([$this->nome_completo, $this->email, $hashsenha]);
+      $linhas = $comando->rowCount();
+      // Desconectar
+      Banco::desconectar();
+      // Retornar a quantidade de linhas cadastradas
+      return $linhas;
     }
+
     public function Apagar(){
      $sql = "DELETE FROM usuarios WHERE id = ?";
-    }
+     $conexao = Banco::conectar();
+     // Converter o comando sql (string) em um objeto
+     $comando = $conexao->prepare($sql);
+
+    // Executar o comando
+    $comando->execute([$this->id_usuario]);
+    $linhas = $comando->rowCount();
+    // Desconectar
+    Banco::desconectar();
+    // Retornar a quantidade de linhas cadastradas
+    return $linhas;
+  }
+
     public function Modificar(){
     $sql = "UPDATE usuarios SET nome_completo=?, email=?, senha=? WHERE id=?";
+    $conexao = Banco::conectar();
+    // Converter o comando sql (string) em um objeto
+    $comando = $conexao->prepare($sql);
+
+    $hashsenha = hash('sha256', $this->senha);
+ 
+      // Executar o comando
+      $comando->execute([$this->nome_completo, $this->email, $hashsenha, $this->id_usuario]);
+      $linhas = $comando->rowCount();
+      // Desconectar
+      Banco::desconectar();
+      // Retornar a quantidade de linhas cadastradas
+      return $linhas;
     }
 }
 
