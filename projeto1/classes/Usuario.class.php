@@ -6,7 +6,7 @@ require_once('Banco.class.php');
 class Usuario{
     // Artibutos: 
     //  Que os atributos preferencialmente sejam iguais aos dos banco de dados
-    public $id_usuario;
+    public $id;
     public $nome_completo;
     public $email;
     public $senha;
@@ -33,10 +33,29 @@ class Usuario{
     Banco::desconectar();
 
     return $resultado;
-
     }
+
+    public function ListarPorId(){
+      $sql = "SELECT * FROM usuarios WHERE id = ?";
+      $conexao =  Banco::conectar();
+  
+      // Converter o comando sql(string) em um objeto:
+      $comando =  $conexao->prepare($sql);
+  
+      // Executa o comando:
+      $comando->execute([$this->id]); 
+  
+      // Entregar o resultado para $resulado como um array associativo:
+      $resultado = $comando->fetchALL(PDO::FETCH_ASSOC);
+  
+      // Desconectar:, sempre desconectar para não sobrecarregar a interface
+      Banco::desconectar();
+  
+      return $resultado;
+    }
+  
     public function Cadastrar(){
-    $sql = "INSERT INTO usuarios('nome_completo', 'email', 'senha') VALUES
+    $sql = "INSERT INTO usuarios(nome_completo, email, senha) VALUES
       (?,?,?)";
         $conexao = Banco::conectar();
         // Converter o comando sql (string) em um objeto
@@ -60,7 +79,7 @@ class Usuario{
      $comando = $conexao->prepare($sql);
 
     // Executar o comando
-    $comando->execute([$this->id_usuario]);
+    $comando->execute([$this->id]);
     $linhas = $comando->rowCount();
     // Desconectar
     Banco::desconectar();
@@ -77,7 +96,7 @@ class Usuario{
     $hashsenha = hash('sha256', $this->senha);
  
       // Executar o comando
-      $comando->execute([$this->nome_completo, $this->email, $hashsenha, $this->id_usuario]);
+      $comando->execute([$this->nome_completo, $this->email, $hashsenha, $this->id]);
       $linhas = $comando->rowCount();
       // Desconectar
       Banco::desconectar();

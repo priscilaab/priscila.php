@@ -10,7 +10,10 @@
 <body>
 
     <form action="validar.php"  method="POST">
-<!--method= sempre usar POST, pq o GET mostra as informações inseridads no input no navegador-->
+<!--method= sempre usar POST, pq o GET mostra as informações inseridads no input no navegador
+$_POST e $_GET é uma forma de passar informações entre paginas
+formularios enviados por GET servem para enviar informações que podem ser compartilhadas como youtube, google, fale conosco, 
+já o Post é usado para passar informações de formularios onde há senha e informações pessoais que não possam ser compartilhadas-->
         <p>
             <label for="username">Username: </label>
             <input type="text" id="username" name="username" />
