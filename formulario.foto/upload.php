@@ -6,7 +6,7 @@
 
 // Variável que define o local de armazenamento do arquivo:
 $target_dir = "imagens/";
-$target_file = $target_dir . basename($_FILES["arquivo"]["name"]);
+$target_file = $target_dir.basename($_FILES["arquivo"]["name"]);
 
 // Var contador de erro:
 $uploadOk = 1;
@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
 // Faz a verificação da extensão do arquivo
 if (
     $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif"
+    && $imageFileType != "gif" && $imageFileType != "jfif"
 ) {
     echo "<h3>ERRO: apenas arquivos JPG, JPEG, PNG e GIF são permitidos.<br></h3>";
     $uploadOk = 0;
@@ -52,4 +52,4 @@ if ($uploadOk == 0) {
     }
 }
 
-
+?>

@@ -1,5 +1,13 @@
 <?php 
 
+// Verificar a sessão:
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+      // Voltar pro login:
+      header("Location: ../login.php");
+      die();
+    }
+
 if(isset($_GET['id'])){
     require_once('classes/Contato.class.php');
     $c = new Contato();

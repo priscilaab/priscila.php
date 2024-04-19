@@ -1,5 +1,14 @@
 <?php
 
+// Verificar a sessão:
+  session_start();
+  if(!isset($_SESSION['usuario'])){
+    // Voltar pro login:
+    header("Location: login.php");
+    die();
+  }
+
+
 require_once('actions/classes/Contato.class.php');
 $c =  new Contato();
 $tabela = $c->Listar();
@@ -27,8 +36,10 @@ $msg_falhas = [
 </head>
 
 <body>
-  <div class="container">
+  <div class="container d-flex flex-column">
+  <a href="sair.php" class="btn btn-danger mt-2 align-self-end">Sair</a>
     <h1>Cadastro de contatos</h1>
+    <h3>Painel de <?=$_SESSION['usuario']['nome'];?></h3>
     <form class="form-group" action="actions/cadastrar_contato.php" method="POST">
       <label for="nome">Nome completo:</label>
       <input type="text" id="nome" name="nome" class="form-control" required>

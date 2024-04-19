@@ -1,5 +1,13 @@
 <?php
 
+// Verificar a sessão:
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+      // Voltar pro login:
+      header("Location: ../login.php");
+      die();
+    }
+
 // Verificar se a pagina está sendo carregada por POST
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     require_once('classes/Contato.class.php');
