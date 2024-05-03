@@ -29,7 +29,10 @@ $p->id_resp = $_SESSION['usuario']['id'];
         //Cadastrar no banco:
         if($p->CadastrarSemFoto() == 1){
             //Deu certo o cadastro!
-            header("Location: ../painel.php");
+            header("Location: ../painel.php?sucesso=produtook");
+            die();
+        } else {
+            header("Location: ../painel.php?erro=produtofalha");
             die();
         }
     }else{
@@ -39,7 +42,7 @@ $p->id_resp = $_SESSION['usuario']['id'];
         //echo $novo_nome;
         $pasta = "../fotos/";
            // Array com tipos de arquivos validos:
-           $validos = ['jpg', 'png', 'webm', 'jpeg', 'jfif'];
+           $validos = ['jpg', 'png', 'webm', 'jpeg', 'jfif', 'avif'];
 
            if(in_array($ext, $validos)){
             
@@ -49,18 +52,21 @@ $p->id_resp = $_SESSION['usuario']['id'];
             // Cadastrar:
             if($p->CadastrarComFoto() == 1){
                 // Deu certo!
-                header("Location: ../painel.php");
-                die();
-            }else{
-                echo "Falha ao cadastrar produto (foto).";
-            }
+                header("Location: ../painel.php?sucesso=produtook");
+            die();
+        } else {
+            header("Location: ../painel.php?erro=produtofalha");
+            die();
+        }
         }else{
             // se der errado :(
-                echo "Falha ao mover a imagem.";
-        }
+                header("Location: ../painel.php?erro=produtofalha");
+                die();
+            }
 
     }else{
-        echo "Formato de imagem inválido!"; 
+        header("Location: ../painel.php?erro=produtofalha");
+        die();
     }
            }
 

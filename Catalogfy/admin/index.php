@@ -65,7 +65,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="emailCad" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="emailCad" aria-describedby="emailCadHelp" name="email">
+                        <input type="email" class="form-control" id="emailCad" aria-describedby="emailCadHelp" name="email">
                         <div id="emailCadHelp" class="form-text">E-mail que será utilizado para acessar o sistema.</div>
                     </div>
                     <div class="mb-3">
@@ -104,6 +104,8 @@
             $("#titulo").text('Login');
         });
     </script>
+    <!-- Importar o SweetAlert-->
+    <?php include_once('includes/alertas.include.php'); ?>
 </body>
 
 </html>

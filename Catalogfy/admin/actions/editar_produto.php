@@ -44,21 +44,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             // Cadastrar:
             if($p->EditarComFoto() == 1){
                 // Deu certo!
-                header("Location: ../painel.php");
+                header("Location: ../painel.php?sucesso=produtook");
                 die();
             }else{
-                echo "Falha ao cadastrar produto (foto).";
+                header("Location: ../painel.php?erro=produtofalha");
+                die();
             }
         }else{
             // se der errado :(
-                echo "Falha ao mover a imagem.";
+                header("Location: ../painel.php?erro=produtofalha");
+                die();
         }
 
     }else{
-        echo "Formato de imagem inválido!"; 
-    }
+        header("Location: ../painel.php?erro=produtofalha");
+                die();
            }
-
+        }
 
 }else{
     echo "Essa página deve ser carregada por POST!";

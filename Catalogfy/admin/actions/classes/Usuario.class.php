@@ -24,10 +24,16 @@ class Usuario{
         $comando = $conexao->prepare($sql);
         // Obter o hash sha256 da senha:
         $hash = hash("sha256", $this->senha);
-        $comando->execute([$this->nome, $this->email, $hash]);
-        $linhas = $comando->rowCount();
-        Banco::desconectar();
-        return $linhas;
+        try{
+            $comando->execute([$this->nome, $this->email, $hash]);
+            $linhas = $comando->rowCount();
+            Banco::desconectar();
+            return $linhas;
+        }catch(PDOException $e){
+            Banco::desconectar();
+            return 0;
+
+        }
     }
 }
 

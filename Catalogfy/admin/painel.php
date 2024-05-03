@@ -66,7 +66,8 @@ $tabela = $c->ListarViewProduto();
                         <td><?= $linha['categoria']; ?></td>
                         <td><?= $linha['estoque']; ?></td>
                         <td>R$<?= $linha['preco']; ?></td>
-                        <td><a class="btn btn-warning mt-2" href="editar.php?id=<?= $linha['id']; ?>">Editar</a> <a class="btn btn-danger mt-2" data-toggle="modal" data-target="#modalExcluirProduto" href="excluir_produto.php<?= $linha['id']; ?>" >Excluir</a></td>
+                        <td><a class="btn btn-warning mt-2" href="editar.php?id=<?= $linha['id']; ?>">Editar</a> <a class="btn btn-danger mt-2" a href="#" onclick="confirmaExcluir()">Excluir</a></td>
+                    <!-- tirados do botao excluir(levavam para modal): data-toggle="modal" data-target="#modalExcluirProduto href="excluir_produto.php<(?)= $linha['id'];?>" -->
                     </tr>
                 <?php } ?>
             </tbody>
@@ -162,6 +163,27 @@ $tabela = $c->ListarViewProduto();
             </div>
         </div>
     </div>
+ <!-- Modal Editar 
+ <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="modaleditar" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modaleditar">Editar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control form-control-lg nomeproduto" type="text">
+                    <input class="form-control form-control-lg descricaoproduto" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
     <!-- Modal de Excluir Produto: -->
     <div class="modal fade" id="modalExcluirProduto" tabindex="-1" role="dialog" aria-labelledby="modalAddCategoriaLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -190,6 +212,59 @@ $tabela = $c->ListarViewProduto();
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        // Modal Editar:
+        $('#modaleditar').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var nome = button.data('nome')
+            var descricao = button.data('descricao')
+            var modal = $(this)
+            modal.find('.nomeproduto').val(nome)
+            modal.find('.descricaoproduto').val(descricao)
+        })
+    </script>
+    <!-- Importar o SweetAlert -->
+    <?php include_once('includes/alertas.include.php');  ?>
+
+    <script>
+        function confirmaExcluir(id){
+            Swal.fire({
+                title: "Tem certeza?",
+                text: "Tem certeza que deseja remover este produto?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#aaa",
+                confirmButtonText: "Sim, excluir!",
+                cancelButtonText: "Não",
+                showClass: {
+                    popup: `
+                    animate__animated
+                    animate__shakeX
+                    `
+                },
+                hideClass: {
+                    popup: `
+                    animate__animated
+                    animate__fadeOut
+                    animate__fast
+                    `
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   // Swal.fire({
+                         // Redirecionar para excluir.php:
+                    window.location.href = 'actions/excluir_produto.php?id=<?= $linha['id']; ?>';
+                    //title: "Deleted!",
+                       // text: "Produto escluído com sucesso!",
+                       // icon: "success"
+                   // });
+                }
+            }); 
+        }
+    </script>
+
 </body>
 
 </html>

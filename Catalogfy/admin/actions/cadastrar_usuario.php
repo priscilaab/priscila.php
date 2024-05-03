@@ -9,9 +9,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($u->Cadastrar() == 1){
         // Deu certo hauhahsuhau
         // Redirecionar de volta ao login:
-        header("Location: ../index.php");
+        header("Location: ../index.php?sucesso=cadastrook");
+        die();
     }else{
-        echo "Falha ao cadastrar usuario";
+        header("Location: ../index.php?erro=cadastrofalha");
+        die();
     }
 }else{
     echo "Essa página dever ser carregada por post!";

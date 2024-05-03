@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         header("Location: ../painel.php");
         die();
     }else{
-        echo "Usuário ou senha incorretos";
+        header('Location: ../index.php?erro=loginfalha');
     }
 }else{
     echo "Essa página deve ser carregada por POST.";

@@ -19,16 +19,19 @@ session_start();
     if($c->Cadastrar() == 1){
         //Deu certo o cadastro!
         //Retorno ao painel.php:
-        header("Location: ../painel.php");
+        header("Location: ../painel.php?sucesso=categoriaok");
         die();
     }else{
-        echo "Falha ao cadastrar a categoria!";
+        header("Location: ../painel.php?erro=categoriafalha");
+        die();
     }
  }else{
-    echo "Nome da categoria muito pequeno";
+    header("Location: ../painel.php?erro=categoriafalha");
+    die();
  }
 }else{
 echo "Essa página deve ser carregada por POST!";
 }
+ 
 
 ?>
